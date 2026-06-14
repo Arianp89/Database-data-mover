@@ -1,13 +1,7 @@
 import mysql.connector
 import os
 import pickle
-from config import *
 
-
-# ✅ اصلاح 1: تعریف متغیرهای پیکربندی
-# این متغیرها باید در فایل config.py تعریف شوند یا از اینجا دریافت شوند
-# db_config = {'host': 'localhost', 'user': 'root', 'password': 'your_password'}
-# database_name = 'your_database'
 
 
 def get_relations(db_config, database_name):
@@ -166,7 +160,7 @@ def main_write_data_to_file(db_config, database_name):
     print("✅ تمام داده‌ها ذخیره شدند")
 
 
-def main_write_data(db_config, database_name):
+def main_write_data_to_database(db_config, database_name):
     """
     خواندن داده‌های ذخیره شده و درج مجدد به دیتابیس
     ⚠️ اصلاح: این تابع ممکن است داده‌های تکراری درج کند
@@ -198,12 +192,23 @@ def main_write_data(db_config, database_name):
 
 # ✅ اصلاح 6: اضافه کردن شرط برای اجرای برنامه
 if __name__ == "__main__":
+    database_name = input('enter your database name:')
+    user = input("enter user:")
+    host = input("enter host:")
+    password = input("enter password:")
+    db_config = {'host':host , 'user': user , 'password':password}
+
+    print('now please one work \n 1)get database data \n 2)write data to database')
+    chose = input("enter this work number:")
+
     try:
-        # ابتدا داده‌ها را خواندن و ذخیره کنید
-        # main_write_data_to_file(db_config, database_name)
-        
-        # سپس برای درج مجدد، خط زیر را فعال کنید
-        main_write_data(db_config, database_name)
+        if chose == '1':
+            # ابتدا داده‌ها را خواندن و ذخیره کنید
+            main_write_data_to_file(db_config, database_name)
+        elif chose == '2':
+            # سپس برای درج مجدد، خط زیر را فعال کنید
+            main_write_data_to_database(db_config, database_name)
+        print('end app')
     except NameError as err:
         print(f"❌ خطا: متغیرهای db_config یا database_name تعریف نشده‌اند")
         print(f"لطفاً آنها را در فایل config.py تعریف کنید")
