@@ -556,7 +556,6 @@ with open(path, 'rb') as f:
 
 - بخش حل مشکلات را بررسی کنید
 - نظرات کد را بخوانید
-- نسخه انگلیسی را مرور کنید: [README_IMPROVED_EN.md](./README_IMPROVED_EN.md)
 - مستندات MySQL را بررسی کنید
 
 ### گزارش مشکلات
